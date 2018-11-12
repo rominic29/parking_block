@@ -3,12 +3,12 @@ source =
   parking_block_app
   parking_block_site
   templates
+
 omit =
     env/*
     */test*
     manage.py
     parking_block_site/wsgi.py
-    kazienenv/*
     */tests/*,
     */migrations/*,
     */middleware.py,
