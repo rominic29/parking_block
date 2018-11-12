@@ -1,0 +1,23 @@
+language: python
+python:
+- "3.6.5"
+services: postgresql
+
+env:
+  global:
+  - DJANGO_SETTINGS_MODULE="parking_block_site.settings"
+  - PYTHONPATH="/home/travis/build/rominic29/parking_block"
+
+install:
+- pip install -r requirements.txt
+
+before_script:
+- psql -c 'create database travisdb;' -U postgres
+
+script:
+- python manage.py migrate
+- coverage erase
+- coverage run manage.py test
+- coverage xml -i
+- coveralls
+sudo: false
